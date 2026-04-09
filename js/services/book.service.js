@@ -34,3 +34,15 @@ function updatePrice(id, newPrice) {
     gBooks[bookIdx].price = newPrice
     return gBooks
 }
+
+function addBook(title, price) {
+    const newBook = {
+        id: getRandomId(),
+        title,
+        price,
+        imgUrl: `https://example.com/${this.id}.jpg`,
+    }
+
+    gBooks.push(newBook)
+    return gBooks
+}
