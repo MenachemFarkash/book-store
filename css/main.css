@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100dvh;
+    background-color: rgb(39, 42, 43);
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 100px auto;
+}
+
+td,
+tr {
+    border: 1px solid white;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
