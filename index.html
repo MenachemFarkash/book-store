@@ -4,10 +4,11 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/main.css" />
-        <script src="js/store.controller.js" defer></script>
+        <script src="js/controllers/book.controller.js" defer></script>
+        <script src="js/services/book.service.js" defer></script>
         <title>Document</title>
     </head>
-    <body>
+    <body onload="renderBooks()">
         <main class="table-container">
             <table>
                 <thead>
@@ -17,35 +18,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Adventure Of Lori</td>
-                        <td>120</td>
-                        <td>
-                            <button>Read</button>
-                            <button>Update</button>
-                            <button>Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>World Atlas</td>
-                        <td>300</td>
-                        <td>
-                            <button>Read</button>
-                            <button>Update</button>
-                            <button>Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Zobra the Greek</td>
-                        <td>87</td>
-                        <td>
-                            <button>Read</button>
-                            <button>Update</button>
-                            <button>Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody></tbody>
             </table>
         </main>
     </body>
