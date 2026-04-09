@@ -12,8 +12,8 @@ function renderBooks() {
         <td>${book.price}</td>
         <td>
            <button>Read</button>
-           <button>Update</button>
-           <button>Delete</button>
+           <button onclick="onUpdateBook('${book.id}')">Update</button>
+           <button onclick="onRemoveBook('${book.id}')">Delete</button>
         </td>
         </tr>
         `
@@ -21,4 +21,15 @@ function renderBooks() {
 
     const elTable = document.querySelector('tbody')
     elTable.innerHTML = booksHtml
+}
+
+function onRemoveBook(id) {
+    removeBook(id)
+    renderBooks()
+}
+
+function onUpdateBook(id) {
+    const newPrice = +prompt('Enter a price')
+    updatePrice(id, newPrice)
+    renderBooks()
 }
