@@ -2,20 +2,20 @@ const gBooks = [
     {
         id: 'bg4J78',
         title: 'Adventure Of Lori',
-        price: 120,
-        imgUrl: 'https://example.com/Adventure-Of-Lori.jpg',
+        price: 130,
+        imgUrl: 'https://placehold.co/400x600',
     },
     {
         id: 'bg8K93',
         title: 'World Atlas',
         price: 120,
-        imgUrl: 'https://example.com/great-gatsby.jpg',
+        imgUrl: 'https://placehold.co/400x600',
     },
     {
         id: 'bg1D93',
         title: 'Zobra the Greek',
-        price: 120,
-        imgUrl: 'https://example.com/great-gatsby.jpg',
+        price: 180,
+        imgUrl: 'https://placehold.co/400x600',
     },
 ]
 
@@ -40,9 +40,14 @@ function addBook(title, price) {
         id: getRandomId(),
         title,
         price,
-        imgUrl: `https://example.com/${this.id}.jpg`,
+        imgUrl: `https://placehold.co/400x600`,
     }
 
     gBooks.push(newBook)
     return gBooks
+}
+
+function getBookDetails(id) {
+    const bookIdx = gBooks.findIndex((book) => book.id === id)
+    return gBooks[bookIdx]
 }

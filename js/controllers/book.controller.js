@@ -11,7 +11,7 @@ function renderBooks() {
         <td>${book.title}</td>
         <td>${book.price}</td>
         <td>
-           <button>Read</button>
+           <button onclick="onOpenModal('${book.id}')">Details</button>
            <button onclick="onUpdateBook('${book.id}')">Update</button>
            <button onclick="onRemoveBook('${book.id}')">Delete</button>
         </td>
