@@ -20,7 +20,7 @@ const gBooks = [
 ]
 
 function getBooks() {
-    return gBooks
+    return fetchDataFromLocalStorage()
 }
 
 function removeBook(id) {
@@ -44,6 +44,7 @@ function addBook(title, price) {
     }
 
     gBooks.push(newBook)
+    uploadToLocalStorage(newBook)
     return gBooks
 }
 

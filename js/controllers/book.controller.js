@@ -3,8 +3,15 @@ function onInit() {
 }
 
 function renderBooks() {
+    const elTable = document.querySelector('tbody')
+
     let booksHtml = ''
     const booksArr = getBooks()
+    if (booksArr.length === 0) {
+        elTable.innerHTML = '<tr><td colspan="3"><h1>No Data Available</h1></td></tr>'
+        return
+    }
+
     booksArr.map((book) => {
         booksHtml += `
         <tr>
@@ -19,7 +26,6 @@ function renderBooks() {
         `
     })
 
-    const elTable = document.querySelector('tbody')
     elTable.innerHTML = booksHtml
 }
 
