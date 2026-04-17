@@ -4,18 +4,21 @@ const gBooks = [
         title: 'Adventure Of Lori',
         price: 130,
         imgUrl: 'https://placehold.co/400x600',
+        rating: 4,
     },
     {
         id: 'bg8K93',
         title: 'World Atlas',
         price: 120,
         imgUrl: 'https://placehold.co/400x600',
+        rating: 5,
     },
     {
         id: 'bg1D93',
         title: 'Zobra the Greek',
         price: 180,
         imgUrl: 'https://placehold.co/400x600',
+        rating: 3,
     },
 ]
 
@@ -41,6 +44,7 @@ function addBook(title, price) {
         title,
         price,
         imgUrl: `https://placehold.co/400x600`,
+        rating: getRandomInt(1, 5),
     }
 
     gBooks.push(newBook)
@@ -51,4 +55,10 @@ function addBook(title, price) {
 function getBookDetails(id) {
     const bookIdx = gBooks.findIndex((book) => book.id === id)
     return gBooks[bookIdx]
+}
+
+function filterBooksByTitle(searchTerm) {
+    const books = getBooks()
+    const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    return filteredBooks
 }

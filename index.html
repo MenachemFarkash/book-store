@@ -12,12 +12,17 @@
         <title>Document</title>
     </head>
     <body onload="renderBooks()">
+        <div class="filter-container">
+            <input type="text" id="search-input" placeholder="Search books..." oninput="renderBooks()" />
+            <button onclick="onClearFilter()">Clear</button>
+        </div>
         <main class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Price</th>
+                        <th>Rating</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -28,6 +33,7 @@
                 <img src="https://placehold.co/400x600" alt="" />
                 <h1>Book Title</h1>
                 <h2>120</h2>
+                <h2>5</h2>
                 <button class="close-button" onclick="onCloseModal()">X</button>
             </div>
         </main>
