@@ -3,10 +3,10 @@ function onInit() {
 }
 
 function renderBooks() {
-    console.log("rendering")
-    const elTable = document.querySelector("tbody")
+    console.log('rendering')
+    const elTable = document.querySelector('tbody')
 
-    let booksHtml = ""
+    let booksHtml = ''
     let booksArr = getBooks()
 
     if (booksArr.length === 0) {
@@ -19,7 +19,7 @@ function renderBooks() {
         <tr>
         <td>${book.title}</td>
         <td>${book.price}</td>
-        <td>${book.rating}</td>
+        <td>${'⭐'.repeat(book.rating) + '★'.repeat(5 - book.rating)}</td>
         <td>
            <button onclick="onOpenModal('${book.id}')">Details</button>
            <button onclick="onUpdateBook('${book.id}')">Update</button>
@@ -38,21 +38,21 @@ function onRemoveBook(id) {
 }
 
 function onUpdateBook(id) {
-    const newPrice = +prompt("Enter a price")
+    const newPrice = +prompt('Enter a price')
     updatePrice(id, newPrice)
     renderBooks()
 }
 
 function onAddBook() {
-    const title = prompt("Enter A Title")
-    const price = prompt("Enter A Price")
+    const title = prompt('Enter A Title')
+    const price = prompt('Enter A Price')
     addBook(title, price)
     renderBooks()
 }
 
 function onSetFilterBy() {
-    const txt = document.querySelector(".search-input").value
-    const minRating = document.querySelector(".min-rating").value
+    const txt = document.querySelector('.search-input').value
+    const minRating = document.querySelector('.min-rating').value
 
     const filterBy = {
         txt,
@@ -63,7 +63,19 @@ function onSetFilterBy() {
     renderBooks()
 }
 
+function onSetSortBy() {
+    const sortField = document.querySelector('.sort-by').value
+    const sortDir = document.querySelector('.sort-dir').checked
+    console.log(sortDir)
+
+    gQueryOptions.sortBy.sortDir = sortDir
+    gQueryOptions.sortBy.sortField = sortField
+
+    renderBooks()
+}
+
 function onClearFilter() {
-    document.getElementById("search-input").value = ""
+    document.querySelector('.search-input').value = ''
+    document.querySelector('.min-rating').value = 0
     renderBooks()
 }
