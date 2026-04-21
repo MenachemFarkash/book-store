@@ -47,3 +47,13 @@ tr {
 .hidden {
     display: none;
 }
+
+.message-modal {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    transform: translate(-50%, -50%);
+    background-color: green;
+    padding-inline: 1rem;
+    font-size: 1.5rem;
+}

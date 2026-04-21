@@ -12,10 +12,10 @@ function removeFromLocalStorage(id) {
 }
 
 function fetchDataFromLocalStorage() {
-    let data = localStorage.getItem('books')
+    let data = localStorage.getItem("books")
     let parsedData = []
 
-    if (localStorage.getItem('books')) {
+    if (localStorage.getItem("books")) {
         parsedData = JSON.parse(data)
     }
 
@@ -23,6 +23,6 @@ function fetchDataFromLocalStorage() {
 }
 
 function uploadDataToLocalStorage(data) {
-    localStorage.setItem('books', JSON.stringify(data))
+    localStorage.setItem("books", JSON.stringify(data))
     return data
 }

@@ -1,40 +1,27 @@
-const gBooks = [
-    {
-        id: 'bg4J78',
-        title: 'Adventure Of Lori',
-        price: 130,
-        imgUrl: 'https://placehold.co/400x600',
-        rating: 4,
-    },
-    {
-        id: 'bg8K93',
-        title: 'World Atlas',
-        price: 120,
-        imgUrl: 'https://placehold.co/400x600',
-        rating: 5,
-    },
-    {
-        id: 'bg1D93',
-        title: 'Zobra the Greek',
-        price: 180,
-        imgUrl: 'https://placehold.co/400x600',
-        rating: 3,
-    },
-]
+let gBooks
 
 function getBooks() {
-    return fetchDataFromLocalStorage()
+    gBooks = fetchDataFromLocalStorage()
+    const filterBy = gQueryOptions.filterBy
+
+    const books = _getFilteredBooks(filterBy)
+    return books
 }
 
 function removeBook(id) {
-    const bookIdx = gBooks.findIndex((book) => book.id === id)
-    gBooks.splice(bookIdx, 1)
+    const books = getBooks()
+    const bookIdx = books.findIndex((book) => book.id === id)
+    books.splice(bookIdx, 1)
+    uploadDataToLocalStorage(books)
     return gBooks
 }
 
 function updatePrice(id, newPrice) {
-    const bookIdx = gBooks.findIndex((book) => book.id === id)
-    gBooks[bookIdx].price = newPrice
+    const books = getBooks()
+    const bookIdx = books.findIndex((book) => book.id === id)
+
+    books[bookIdx].price = newPrice
+    uploadDataToLocalStorage(books)
     return gBooks
 }
 
@@ -47,18 +34,54 @@ function addBook(title, price) {
         rating: getRandomInt(1, 5),
     }
 
-    gBooks.push(newBook)
     uploadToLocalStorage(newBook)
     return gBooks
 }
 
 function getBookDetails(id) {
-    const bookIdx = gBooks.findIndex((book) => book.id === id)
-    return gBooks[bookIdx]
+    const books = getBooks()
+    const bookIdx = books.findIndex((book) => book.id === id)
+    return books[bookIdx]
 }
 
 function filterBooksByTitle(searchTerm) {
-    const books = getBooks()
-    const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    const books = fetchDataFromLocalStorage()
+    searchTerm = !searchTerm ? gQueryOptions.filterBy.txt : searchTerm
+    const filteredBooks = books.filter((book) =>
+        book.title.toLowerCase().includes(searchTerm.toLowerCase()),
+    )
     return filteredBooks
+}
+
+function filterBooksByRating(minRating) {
+    const books = fetchDataFromLocalStorage()
+    minRating = !minRating ? gQueryOptions.filterBy.minRating : minRating
+    const filteredBooks = books.filter((book) => book.rating >= minRating)
+    return filteredBooks
+}
+
+function setFilterBy(txt) {
+    gQueryOptions.filterBy.txt = txt
+    renderBooks()
+}
+
+const gQueryOptions = {
+    filterBy: { txt: "", minRating: 0 },
+    sortBy: { sortField: "", sortDir: 1 },
+    page: { idx: 0, size: 3 },
+}
+
+function _getFilteredBooks(filterBy) {
+    let books = gBooks.slice()
+
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, "i")
+        books = books.filter((book) => regex.test(book.title))
+    }
+
+    if (filterBy.minRating > 0) {
+        books = books.filter((book) => book.rating >= filterBy.minRating)
+    }
+
+    return books
 }

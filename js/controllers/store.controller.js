@@ -1,12 +1,11 @@
 function onCloseModal() {
-    const elModal = document.querySelector('.book-details-modal')
-    elModal.classList.add('hidden')
+    const elModal = document.querySelector(".book-details-modal")
+    elModal.classList.add("hidden")
 }
 
 function onOpenModal(id) {
     const details = getBookDetails(id)
-    const elBookDetailsModal = document.querySelector('.book-details-modal')
-    const detailsHtml = ''
+    const elBookDetailsModal = document.querySelector(".book-details-modal")
 
     elBookDetailsModal.innerHTML = `
         <img src="https://placehold.co/400x600" alt="" />
@@ -16,5 +15,5 @@ function onOpenModal(id) {
                 <button class="close-button" onclick="onCloseModal()">X</button>
         `
 
-    elBookDetailsModal.classList.remove('hidden')
+    elBookDetailsModal.classList.remove("hidden")
 }

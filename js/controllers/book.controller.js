@@ -3,19 +3,15 @@ function onInit() {
 }
 
 function renderBooks() {
-    const elTable = document.querySelector('tbody')
+    console.log("rendering")
+    const elTable = document.querySelector("tbody")
 
-    let booksHtml = ''
+    let booksHtml = ""
     let booksArr = getBooks()
+
     if (booksArr.length === 0) {
         elTable.innerHTML = '<tr><td colspan="4"><h1>No Data Available</h1></td></tr>'
         return
-    }
-
-    if (document.getElementById('search-input').value) {
-        const searchTerm = document.getElementById('search-input').value
-        booksArr = filterBooksByTitle(searchTerm)
-        console.log(booksArr)
     }
 
     booksArr.map((book) => {
@@ -42,19 +38,32 @@ function onRemoveBook(id) {
 }
 
 function onUpdateBook(id) {
-    const newPrice = +prompt('Enter a price')
+    const newPrice = +prompt("Enter a price")
     updatePrice(id, newPrice)
     renderBooks()
 }
 
 function onAddBook() {
-    const title = prompt('Enter A Title')
-    const price = prompt('Enter A Price')
+    const title = prompt("Enter A Title")
+    const price = prompt("Enter A Price")
     addBook(title, price)
     renderBooks()
 }
 
+function onSetFilterBy() {
+    const txt = document.querySelector(".search-input").value
+    const minRating = document.querySelector(".min-rating").value
+
+    const filterBy = {
+        txt,
+        minRating,
+    }
+
+    gQueryOptions.filterBy = filterBy
+    renderBooks()
+}
+
 function onClearFilter() {
-    document.getElementById('search-input').value = ''
+    document.getElementById("search-input").value = ""
     renderBooks()
 }
