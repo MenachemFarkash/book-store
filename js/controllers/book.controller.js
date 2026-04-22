@@ -23,7 +23,7 @@ function renderBooks() {
         <td>${'⭐'.repeat(book.rating) + '★'.repeat(5 - book.rating)}</td>
         <td>
            <button onclick="onOpenModal('${book.id}')">Details</button>
-           <button onclick="onUpdateBook('${book.id}')">Update</button>
+           <button onclick="onOpenEditModal('${book.id}')">Update</button>
            <button onclick="onRemoveBook('${book.id}')">Delete</button>
         </td>
         </tr>
@@ -39,8 +39,12 @@ function onRemoveBook(id) {
 }
 
 function onUpdateBook(id) {
-    const newPrice = +prompt('Enter a price')
-    updatePrice(id, newPrice)
+    const elEditBookModal = document.querySelector('.edit-book-modal')
+    const title = elEditBookModal.querySelector('#book-title').value
+    const price = elEditBookModal.querySelector('#book-price').value
+    id = elEditBookModal.dataset.bookId
+    updateBook(id, title, price)
+    elEditBookModal.classList.add('hidden')
     renderBooks()
 }
 
@@ -158,4 +162,13 @@ function onNextPage() {
     }
     setQueryStringParams()
     renderBooks()
+}
+
+function onOpenEditModal(id) {
+    const book = getBookDetails(id)
+    const elModal = document.querySelector('.edit-book-modal')
+    elModal.classList.remove('hidden')
+    elModal.querySelector('#book-title').value = book.title
+    elModal.querySelector('#book-price').value = book.price
+    elModal.dataset.bookId = id
 }

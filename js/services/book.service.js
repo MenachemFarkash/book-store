@@ -28,6 +28,15 @@ function removeBook(id) {
     return gBooks
 }
 
+function updateBook(id, title, price) {
+    const books = getBooks()
+    const bookIdx = books.findIndex((book) => book.id === id)
+    books[bookIdx].title = title
+    books[bookIdx].price = price
+    uploadDataToLocalStorage(books)
+    return gBooks
+}
+
 function updatePrice(id, newPrice) {
     const books = getBooks()
     const bookIdx = books.findIndex((book) => book.id === id)

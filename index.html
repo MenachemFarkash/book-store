@@ -84,6 +84,20 @@
                 <button onclick="onNextPage()">Next</button>
             </section>
 
+            <div class="edit-book-modal hidden" data-bookId="">
+                <h1>Edit Book</h1>
+                <span>
+                    <label for="book-title">Title</label>
+                    <input type="text" id="book-title" />
+                </span>
+                <span>
+                    <label for="book-price">Price</label>
+                    <input type="number" id="book-price" />
+                </span>
+                <button onclick="onUpdateBook()">Save</button>
+                <button class="close-button" onclick="onCloseModal()">Cancel</button>
+            </div>
+
             <div class="book-details-modal hidden">
                 <img src="https://placehold.co/400x600" alt="" />
                 <h1>Book Title</h1>
