@@ -8,7 +8,16 @@ function getBooks() {
     let books = _getFilteredBooks(filterBy)
     books = getSortedBooks(sortBy, books)
 
+    const startIdx = gQueryOptions.page.idx * gQueryOptions.page.size
+    const endIdx = startIdx + gQueryOptions.page.size
+    books = books.slice(startIdx, endIdx)
+
     return books
+}
+
+function getBooksCount() {
+    const books = _getFilteredBooks(gQueryOptions.filterBy)
+    return books.length
 }
 
 function removeBook(id) {
@@ -69,7 +78,11 @@ function setFilterBy(txt) {
 const gQueryOptions = {
     filterBy: { txt: '', minRating: 0 },
     sortBy: { sortField: '', sortDir: 1 },
-    page: { idx: 0, size: 3 },
+    page: { idx: 0, size: 5 },
+}
+
+function getQueryOptions() {
+    return gQueryOptions
 }
 
 function _getFilteredBooks(filterBy) {

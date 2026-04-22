@@ -11,7 +11,7 @@
         <script src="js/utils/book.utils.js" defer></script>
         <title>Document</title>
     </head>
-    <body onload="renderBooks()">
+    <body onload="onInit()">
         <form class="filter-container" onsubmit="event.preventDefault()">
             <fieldset>
                 <legend>Filter</legend>
@@ -38,6 +38,7 @@
         <form class="sort-container" onsubmit="event.preventDefault()">
             <fieldset>
                 <legend>Sort</legend>
+
                 <label for="sort-by">Sort By</label>
                 <select class="sort-by" name="sort-by" id="" onchange="onSetSortBy()">
                     <option value="">Default</option>
@@ -45,9 +46,21 @@
                     <option value="price">Price</option>
                     <option value="rating">Rating</option>
                 </select>
+
                 <label for="sort-dir">Ascending?</label>
                 <input class="sort-dir" type="checkbox" name="sort-dir" onchange="onSetSortBy()" />
                 <button onclick="onClearSort()">Clear</button>
+
+                <label for="books-per-page">Books Per Page</label>
+                <input
+                    class="books-per-page"
+                    type="number"
+                    name="books-per-page"
+                    id="books-per-page"
+                    min="1"
+                    value="5"
+                    onchange="onSetBooksPerPage()"
+                />
             </fieldset>
         </form>
         <main class="table-container">
@@ -62,7 +75,15 @@
                 </thead>
                 <tbody></tbody>
             </table>
+
             <button onclick="onAddBook()">Add New Book</button>
+
+            <section class="pagination">
+                <button onclick="onPrevPage()">Previous</button>
+                <span>Page <span class="page-number">1</span> of <span class="total-pages">1</span></span>
+                <button onclick="onNextPage()">Next</button>
+            </section>
+
             <div class="book-details-modal hidden">
                 <img src="https://placehold.co/400x600" alt="" />
                 <h1>Book Title</h1>
