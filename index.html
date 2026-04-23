@@ -76,15 +76,18 @@
                 <tbody></tbody>
             </table>
 
-            <button onclick="onAddBook()">Add New Book</button>
+            <button onclick="onOpenEditModal(0, true)">Add New Book</button>
 
             <section class="pagination">
                 <button onclick="onPrevPage()">Previous</button>
-                <span>Page <span class="page-number">1</span> of <span class="total-pages">1</span></span>
+                <span
+                    >Page <span class="page-number">1</span> of
+                    <span class="total-pages">1</span></span
+                >
                 <button onclick="onNextPage()">Next</button>
             </section>
 
-            <div class="edit-book-modal hidden" data-bookId="">
+            <div class="edit-book-modal hidden" data-bookId="0">
                 <h1>Edit Book</h1>
                 <span>
                     <label for="book-title">Title</label>

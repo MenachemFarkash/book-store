@@ -29,6 +29,7 @@ function removeBook(id) {
 }
 
 function updateBook(id, title, price) {
+    console.log("updating")
     const books = getBooks()
     const bookIdx = books.findIndex((book) => book.id === id)
     books[bookIdx].title = title
@@ -68,7 +69,9 @@ function getBookDetails(id) {
 function filterBooksByTitle(searchTerm) {
     const books = fetchDataFromLocalStorage()
     searchTerm = !searchTerm ? gQueryOptions.filterBy.txt : searchTerm
-    const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredBooks = books.filter((book) =>
+        book.title.toLowerCase().includes(searchTerm.toLowerCase()),
+    )
     return filteredBooks
 }
 
@@ -85,8 +88,8 @@ function setFilterBy(txt) {
 }
 
 const gQueryOptions = {
-    filterBy: { txt: '', minRating: 0 },
-    sortBy: { sortField: '', sortDir: 1 },
+    filterBy: { txt: "", minRating: 0 },
+    sortBy: { sortField: "", sortDir: 1 },
     page: { idx: 0, size: 5 },
 }
 
@@ -98,7 +101,7 @@ function _getFilteredBooks(filterBy) {
     let books = gBooks.slice()
 
     if (filterBy.txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
+        const regex = new RegExp(filterBy.txt, "i")
         books = books.filter((book) => regex.test(book.title))
     }
 
@@ -113,11 +116,11 @@ function getSortedBooks(sortBy, books) {
     console.log(sortBy)
     const sortDir = sortBy.sortDir ? 1 : -1
 
-    if (sortBy.sortField === 'title') {
+    if (sortBy.sortField === "title") {
         books.sort((a, b) => a.title.localeCompare(b.title) * sortDir)
-    } else if (sortBy.sortField === 'price') {
+    } else if (sortBy.sortField === "price") {
         books.sort((a, b) => (a.price - b.price) * sortDir)
-    } else if (sortBy.sortField === 'rating') {
+    } else if (sortBy.sortField === "rating") {
         books.sort((a, b) => (a.rating - b.rating) * sortDir)
     }
 
